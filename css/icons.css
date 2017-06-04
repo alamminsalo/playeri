@@ -1,0 +1,23 @@
+.svgicon {
+	color: #888888;
+	font-size:initial;
+	vertical-align: middle;
+	position:relative;
+	transition: font-size .4s;
+}
+
+.svgicon:hover{
+	font-size:2.0em;
+}
+
+.bigger{
+	font-size: 125%;
+}
+
+.smaller{
+	font-size: 80%;
+}
+
+.svgicon:hover, .queueactive{
+	color: #ffffff !important;
+}

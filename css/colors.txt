@@ -1,0 +1,25 @@
+font: #aaaaaa
+bg: #262626
+shadow: #131313
+
+body-bg: #1a1a1a
+
+
+
+//////
+
+$bgColor: #242424;
+$uiColor: #2c2c2c;
+
+$activeColor: #00B370;
+$fontColor: #797979;
+$hoverColor: #ffffff;
+$altColor: #62717A;
+
+$frontColor: #ffffff;
+
+$errorColor: #b34341;
+
+$menuBg: #272727;
+$menuColor: #aaaaaa;
+$menuHover: #cdcdcd;

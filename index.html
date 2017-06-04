@@ -1,0 +1,98 @@
+<!--
+	Playeri.net
+	Copyright Antti Lamminsalo, 2014
+
+	Icon fonts by: FontAwesome, Entypo, Modern Pictograms
+-->
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Playeri.net - Play music and videos from YouTube</title>
+	<meta name="description" content="A media player wrapper for YouTube"/>
+	<meta name="keywords" content="media,player,music,videos,playeri,net,youtube,playlists,javascript,playeri-net"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<link rel="apple-touch-icon" sizes="57x57" href="icon/apple-touch-icon-57x57.png?v=9BKRgAAxGb">
+	<link rel="apple-touch-icon" sizes="60x60" href="icon/apple-touch-icon-60x60.png?v=9BKRgAAxGb">
+	<link rel="apple-touch-icon" sizes="72x72" href="icon/apple-touch-icon-72x72.png?v=9BKRgAAxGb">
+	<link rel="apple-touch-icon" sizes="76x76" href="icon/apple-touch-icon-76x76.png?v=9BKRgAAxGb">
+	<link rel="apple-touch-icon" sizes="114x114" href="icon/apple-touch-icon-114x114.png?v=9BKRgAAxGb">
+	<link rel="apple-touch-icon" sizes="120x120" href="icon/apple-touch-icon-120x120.png?v=9BKRgAAxGb">
+	<link rel="apple-touch-icon" sizes="144x144" href="icon/apple-touch-icon-144x144.png?v=9BKRgAAxGb">
+	<link rel="apple-touch-icon" sizes="152x152" href="icon/apple-touch-icon-152x152.png?v=9BKRgAAxGb">
+	<link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon-180x180.png?v=9BKRgAAxGb">
+	<link rel="icon" type="image/png" href="icon/favicon-32x32.png?v=9BKRgAAxGb" sizes="32x32">
+	<link rel="icon" type="image/png" href="icon/android-chrome-192x192.png?v=9BKRgAAxGb" sizes="192x192">
+	<link rel="icon" type="image/png" href="icon/favicon-96x96.png?v=9BKRgAAxGb" sizes="96x96">
+	<link rel="icon" type="image/png" href="icon/favicon-16x16.png?v=9BKRgAAxGb" sizes="16x16">
+	<link rel="manifest" href="icon/manifest.json?v=9BKRgAAxGb">
+	<link rel="shortcut icon" href="icon/favicon.ico?v=9BKRgAAxGb">
+	<meta name="apple-mobile-web-app-title" content="Playeri.net">
+	<meta name="application-name" content="Playeri.net">
+	<meta name="msapplication-TileColor" content="#603cba">
+	<meta name="msapplication-TileImage" content="icon/mstile-144x144.png?v=9BKRgAAxGb">
+	<meta name="msapplication-config" content="icon/browserconfig.xml?v=9BKRgAAxGb">
+	<meta name="theme-color" content="#ffffff">
+</head>
+
+<body class="dark-bg" _context="about">
+
+	<div id="player-overlay" class="screen centerX centerY">
+		<!-- <div id="player-wrap">
+					<span id="player"></span>
+		</div>-->
+	</div>
+
+	<div id="content-wrap">
+		<div id="searchdiv" class="dark-ui">
+			<input id="searchbox" class="selectable dark-ui" type="text" placeholder="Search here"/>
+			<span id="clearSearchButton" class="hidden svgicon icon-cancel"></span>
+		</div>
+		<div id="results-wrap" class="dark-ui">
+			<div id="searchList"></div>
+		</div>
+		<div id="PlaylistContainer">
+
+			<div id="playlists-wrap" _context="playlist-add" class="dark-ui">
+				<ul id="playlists" class="lists"></ul>
+				<div id="addPlaylistButton" class="container">
+					<span class="svgicon icon-plus"></span>
+				</div>
+			</div>
+			<div id="listHandle"></div>
+			<ul id="playlist" class="dark-ui lists"></ul>
+			<ul id="queuelist" class="dark-ui lists"></ul>
+		</div>
+		<div id="posBar" class="bg slider">
+			<div id="posfg" class="bar-active"></div>
+		</div>
+		<div id="current-wrap">
+			<span id="img-wrap">
+				<div id="player-wrap">
+					<span id="player"/>
+				</div>
+				<!--<img id="current-img" height="48"/>-->
+				<div class="fill centerElements">
+					<span class="svgicon icon-video"/>
+				</div>
+			</span>
+
+			<span id="current-title" class="title front selectable"></span>
+			<span id="current-duration" class="inforight front"></span>
+			<span id="prevButton" class="svgicon icon-to-start"></span>
+			<span class="svgicon icon-play" id="playIcon"></span>
+			<span id="nextButton" class="svgicon icon-to-end"></span>
+			<span id="shuffleButton" title="Toggle shuffle" class="svgicon tooltip icon-shuffle">
+				<span class="tip ">Shuffle</span>
+			</span>
+			<span id="queueButton" title="Show queue" class="svgicon tooltip icon-menu">
+				<span class="tip ">Show queue</span>
+			</span>
+		</div>
+	</div>
+</body>
+<link rel="stylesheet" type="text/css" href="css/dark.min.css?v=3.1" id="css_theme">
+<script type="text/javascript" src="https://www.youtube.com/iframe_api?v=1"></script>
+<script type="text/javascript" src="js/yourls-api.js?v=1.0"></script>
+<script type="text/javascript" src="js/sortable.min.js"></script>
+<script type="text/javascript" src="js/playeri.min.js?v=3.1"></script>
+</html>

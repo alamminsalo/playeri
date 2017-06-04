@@ -1,0 +1,777 @@
+@import 'fontello.css';
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+$bgColor: #75A0B1;
+$uiColor: #dddddd;
+
+$resultsColor: #dadada;
+$contentBg: #c5c5c5;
+$icon: #8b8b8b;
+$ui2: #c0c0c0;
+$ui3: #d2d2d2;
+
+$shadowColor: #131313;
+$dropShadow: rgba(55, 55, 55, 0.55);
+
+$highlightshadow: 1px 1px #000;
+
+$activeColor: #ec5252;
+$activeBg: #ec5252;
+$activeColor2: #68b3c1;
+$queueColor: #1EAB84;
+$currentColor: #1EAB84;
+$songpanelColor :$bgColor;
+
+$fontColor: #737373;
+$hoverColor: $activeColor2;
+$altColor: #62717A;
+
+$frontColor: #ffffff;
+
+$errorColor: #b34341;
+
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin display-flex(){
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;
+}
+
+@mixin flex-direction($dir){
+  -webkit-flex-direction: $dir;
+  -ms-flex-direction: $dir;
+  flex-direction: $dir;
+}
+
+@mixin flex-align-items($val){
+  -webkit-align-items: $val;
+  align-items: $val;
+}
+
+@mixin flex-justify-content($val){
+  -webkit-justify-content: $val;
+  justify-content: $val;
+}
+
+@mixin flex($val){
+  -webkit-flex: $val;
+  flex: $val;
+}
+
+@mixin transition($val){
+  -webkit-transition: $val;
+  -moz-transition: $val;
+  -o-transition: $val;
+  transition: $val;
+}
+
+.box-shadow{
+  box-shadow: 5px 6px 0px $dropShadow;
+}
+
+.font{
+  font-size: 80%;
+}
+
+:link {
+  color: $activeColor2;
+  text-decoration: none;
+}
+:visited {
+  color: $activeColor;
+  text-decoration: none;
+}
+
+::-webkit-scrollbar{
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb{
+  background: $activeColor2;
+  //@include border-radius(.5em);
+}
+
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  overflow: hidden;
+}
+
+.noise:after{
+  content: "";
+  position:absolute;
+  z-index:-1;
+  top:0;left:0;right:0;bottom:0;
+  background-image: url('http://api.thumbr.it/whitenoise-361x370.png');
+  opacity:0.1;
+}
+
+.highlight{
+  text-shadow: $highlightshadow;
+}
+
+.active {
+  color: #FFFFFF !important;
+  //border-left: 4px $activeColor solid;
+  background: $activeColor!important;
+}
+
+.activePl {
+  color: #FFFFFF !important;
+  //border-left: 4px $activeColor2 solid;
+  background:$activeColor2!important;
+}
+
+.alt{
+  color: $queueColor!important;
+}
+
+.queued {
+  color: #fff !important;
+  //border-left: 4px $queueColor solid;
+  background: $queueColor!important;
+}
+
+.result-pl{
+  color: $activeColor !important;
+}
+
+.result-item{
+  @extend .active2;
+}
+
+.active2{
+  color: $activeColor2 !important;
+}
+
+.activeAlt{
+  color: $activeColor !important;
+}
+
+.front{
+  color: $frontColor;
+}
+
+.hover-on {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.lighter {
+  background: rgba(100, 100, 100, 0.05);
+}
+
+.container {
+  cursor: default;
+  overflow: hidden;
+  padding: .1em;
+  height: 22px;
+  @include transition(border 200ms);
+  @extend .centerY;
+
+  .title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    @include flex(1);
+  }
+
+  .inforight {
+    margin-left:10px;
+  }
+  &:hover{
+    @extend .hover-on;
+  }
+}
+
+.result {
+  @extend .container;
+  font-size: 0.9em;
+  overflow: hidden;
+  height: 44px;
+
+  .thumbnail {
+    margin-left: 6px;
+  }
+}
+
+.error {
+  color: $errorColor !important;
+}
+
+#searchdiv{
+  @extend .centerY;
+  //position:relative;
+  white-space: nowrap;
+  margin-bottom:4px;
+}
+
+#player-wrap {
+  width: 0;
+  height: 0;
+
+  div {
+    width: inherit;
+    height: 100%;
+  }
+}
+
+#searchbox, .textbox {
+  display: inline-block;
+  width: 100%;
+  font-family: inherit;
+  z-index: 1;
+  height: 18px;
+  border: none;
+  outline: 0;
+  &::-webkit-input-placeholder{
+    color: $fontColor;
+  }
+}
+
+
+
+.spacer{
+  width:4px;
+}
+
+#listHandle {
+  @extend .spacer;
+  cursor: ew-resize;
+}
+
+.lists {
+  @extend .font;
+  list-style-type: none;
+  width: 100%;
+  overflow-y: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.bar-active {
+  height: 5px;
+  background: $activeColor2;
+  width: 0;
+  max-width: 100%;
+  //@include border-radius(.5em);
+  @include transition(width 80ms ease);
+}
+
+#current-wrap {
+  position:relative;
+  //width:100%;
+  height:48px;
+  margin-bottom:-48px;
+  @extend .centerY;
+  @include transition(margin-bottom 0.3s ease);
+  background: $songpanelColor;
+  overflow: hidden;
+
+  #img-wrap {
+    position:relative;
+    height:inherit;
+    width:64px;
+    @extend .centerY;
+    cursor: default;
+
+    #current-img {
+      position: absolute;
+      top:0;
+      height: 100%;
+      width: 100%;
+      @include transition(opacity .2s);
+    }
+
+    .svgicon {
+      margin-left:auto;
+      margin-right: auto;
+      font-size:1em;
+      line-height:48px;
+
+      @include transition(all .1s);
+      opacity: 0;
+      color: #e3e3e3 !important;
+    }
+
+    &:hover {
+      #current-img {
+        opacity: 0.25;
+      }
+      .svgicon {
+        opacity:1;
+        font-size:1.8em;
+      }
+    }
+  }
+  #current-title{
+    @include flex(1);
+    width:0;
+    padding-left:4px;
+    padding-right:4px;
+    cursor: auto;
+  }
+}
+
+#settings {
+  background: $uiColor;
+  white-space: nowrap;
+  z-index: 4;
+  cursor:default;
+  @extend .centerY;
+  padding:.2em;
+
+  #posBar {
+    position:relative;
+    width:100%;
+    padding:4px;
+    @include flex(1);
+    .bg{
+      background: $ui2;
+    }
+  }
+
+  #volume-slider {
+    //display: inline-block;
+    position:relative;
+    width:60px;
+    padding:4px;
+    .bg {
+      background: $ui2;
+    }
+  }
+
+  .svgicon{
+    font-size:1.2em;
+  }
+
+}
+
+.playlist-rename {
+  font-family: inherit;
+  max-width: 80%;
+}
+
+.hidden {
+  display: none!important;
+}
+
+.hidden-vis {
+  visibility: hidden;
+  background:none!important;
+}
+
+/* playlist view css end */
+
+#container {
+  width: 100%;
+  @include display-flex();
+
+  //overflow:hidden;
+  height: 98vh;
+
+  #centerdiv {
+    max-width: 1200px;
+    height:100%;
+    @include flex(600);
+  }
+
+  #leftdiv, #rightdiv {
+    height: 100%;
+    @include flex(1);
+  }
+}
+
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.selectable {
+  -webkit-touch-callout: inherit;
+  -webkit-user-select: auto;
+  -moz-user-select: text;
+  -ms-user-select: inherit;
+  user-select: inherit;
+}
+
+.dark-ui {
+  background: $uiColor;
+  color: $fontColor;
+}
+
+.dark-bg {
+  background: $bgColor;
+}
+
+.tooltip {
+  z-index:3;
+  .tip {
+    position: absolute;
+    max-width: 140px;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: none;
+    padding: 8px;
+    top: -40px;
+    left: -38px;
+    font-size: initial;
+    font-family: inherit;
+    //@include border-radius(4px);
+    //background: $menuBg !important;
+    //color: $menuColor !important;
+    //box-shadow: -1px 2px 6px #131313;
+  }
+  /*&:hover {
+    .tip{
+
+      display:inline !important;
+    }*/
+  //}
+  //&:hover:after {
+  //  border-top: solid 10px $menuBg;
+  //  border-right: solid 10px transparent;
+  //  border-left: solid 10px transparent;
+  //  top: -8px;
+  //  content: "";
+  //  left: 0;
+  //  position: absolute;
+  //  z-index: 3;
+  //}
+}
+
+.centerX {
+  @include display-flex();
+  @include flex-justify-content(center);
+}
+
+.centerY {
+  @include display-flex();
+  @include flex-align-items(center);
+}
+
+.empty-queue {
+  width: 100%;
+  height: 100%;
+  @extend .centerY;
+  @extend .centerX;
+}
+
+.contextmenu {
+  background: $ui3;
+  position: absolute;
+  display: block;
+  opacity:0;
+  @include transition(opacity .2s);
+  @extend .box-shadow;
+  white-space: nowrap;
+  z-index: 100;
+  overflow:hidden;
+  //@include border-radius(.3em);
+}
+
+.menuitem{
+  cursor: default;
+  @extend .centerY;
+  padding:.15em;
+  min-width: 200px;
+  @extend .font;
+  height:24px;
+
+  .svgicon{
+    font-size: 1.2em;
+  }
+  &:hover{
+    background-color: $activeColor2!important;
+    color: #fff!important;
+    .menuicon{
+      color: #fff!important;
+    }
+  }
+  .menuicon:before{
+    text-align: left;
+  }
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td{
+  padding:0;
+  margin:0;
+}
+
+.screen{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.panel{
+  position: relative;
+  max-width: 60%;
+  max-height:20%;
+  padding: 2em;
+  overflow:auto;
+  @extend .box-shadow;
+  h2{
+    font-size: 1em;
+    color: $fontColor;
+  }
+}
+
+#screendim {
+  @extend .screen;
+  background: rgba(0, 0, 0, 0.7);
+  @include transition(opacity .4s);
+}
+
+#content-wrap {
+  @include display-flex();
+  @include flex-direction(column);
+  height:100%;
+  overflow: hidden;
+  background: $contentBg;
+  @extend .box-shadow;
+
+  #results-wrap {
+    z-index: 10;
+    position:relative;
+    @include transition(none);
+    height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: $resultsColor;
+    @include transition(height .2s);
+  }
+
+  #PlaylistContainer{
+    position:relative;
+    @include flex(1);
+    height:100%; //This fixed Chrome-related nested-flexbox bug?
+    max-height:100%;
+    @include display-flex();
+    @include transition(left .2s ease);
+    @include flex-direction(row);
+    left:0;
+    overflow:hidden;
+    margin-bottom:4px;
+    width:200%;
+
+
+
+    .transition-width{
+      @include transition(width .2s ease);
+    }
+
+    #playlists-wrap{
+      overflow-y:auto;
+      width:15%;
+
+      &:hover #addPlaylistButton{
+        visibility: visible;
+      }
+    }
+
+    #playlist{
+      //height:100%;
+      @include flex(1);
+      overflow-y:auto;
+      //width:75%;
+      //min-height:1px;
+    }
+
+    #queuelist{
+      //position:relative;
+      background: $uiColor;
+      width:50%;
+      /*padding:0;
+      margin:0;
+      bottom:0;*/
+      height:100%;
+      //@include transition(height 0.2s ease);
+    }
+  }
+}
+
+#addPlaylistButton{
+  @extend .centerY;
+  @extend .centerX;
+  height: 30px;
+  visibility: hidden;
+
+  &:hover{
+    //ackground: #363636;
+    .svgicon{
+      color: $hoverColor;
+    }
+  }
+}
+
+
+
+.slider{
+  //@include border-radius(.5em);
+  overflow:hidden;
+}
+
+.queueactive{
+  color: $hoverColor !important;
+}
+
+.svgicon {
+  color: $icon;
+  font-size:initial;
+  text-shadow: none!important;
+  position:relative;
+  //@include transition(color .1s);
+
+  &:hover{
+    color: $hoverColor !important;
+  }
+}
+
+.bigger{
+  font-size: 1.6em!important;
+}
+
+.smaller{
+  font-size: .9em!important;
+}
+
+
+/*
+   Animation example, for spinners
+*/
+.spinner:before {
+  -moz-animation: spin 1s infinite linear;
+  -o-animation: spin 1s infinite linear;
+  -webkit-animation: spin 1s infinite linear;
+  animation: spin 1s infinite linear;
+  display: inline-block;
+}
+
+@-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@-webkit-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@-o-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@-ms-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+.ghost{
+  opacity: .5;
+}
+
+@function knobsize($parentHeight){
+  @return $parentHeight - 4px
+}
+
+.switch{
+  margin-left:1em;
+  //overflow:hidden;
+  display:inline-block;
+  position:relative;
+  background: $ui2;
+  width:34px;
+  $height: 18px;
+  height:$height;
+  bottom:0;
+  //@include border-radius(.5em);
+  a{
+    position:absolute;
+    @include transition(left 150ms ease);
+    left: 0;
+    margin:2px;
+    height: knobsize($height);
+    width: knobsize($height);
+    background: $uiColor;
+    //@include border-radius(.5em);
+  }
+  .activeknob{
+    background: $activeColor2!important;
+  }
+}
